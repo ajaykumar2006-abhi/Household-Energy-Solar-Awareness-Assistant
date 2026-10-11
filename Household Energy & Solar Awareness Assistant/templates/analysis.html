@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumption Analysis - Bright Homes</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="page-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">☀️ Bright Homes</div>
+                <div class="sidebar-subtitle">Energy & Solar Awareness</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="/" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🏠</span>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/survey" class="sidebar-nav-link active">
+                        <span class="sidebar-nav-icon">📋</span>
+                        Energy Assessment
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/solar-estimator" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">☀️</span>
+                        Solar Estimator
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/pm-surya-ghar" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🇮🇳</span>
+                        PM Surya Ghar
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/registration" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📝</span>
+                        Registration Guide
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/history" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📊</span>
+                        History
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/dashboard" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📈</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/about-csp" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">ℹ️</span>
+                        About CSP
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <div>
+                    <h1 class="header-title">Electricity Consumption Analysis</h1>
+                    <p class="header-subtitle">Detailed breakdown of your household energy usage</p>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>ℹ️ Note:</strong> This page shows the consumption analysis from your completed assessment. To start a new assessment, <a href="/survey">click here</a>.
+            </div>
+
+            <!-- Consumption Results -->
+            <div id="consumption-results" class="card">
+                <div class="card-header">
+                    <h2 class="card-title">⚡ Energy Consumption Summary</h2>
+                </div>
+                <div id="consumption-content">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📊</div>
+                        <div class="empty-state-text">No consumption data available</div>
+                        <p>Complete an energy assessment to see your consumption analysis.</p>
+                        <a href="/survey" class="btn btn-primary mt-2">Start Assessment</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Energy Category -->
+            <div id="energy-category"></div>
+
+            <!-- Appliance Breakdown -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">🔌 Appliance-wise Consumption</h2>
+                </div>
+                <div id="appliance-breakdown">
+                    <p class="text-gray">No appliance data available.</p>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <div class="disclaimer-title">⚠️ Important Note</div>
+                <p>
+                    Consumption values are estimates based on the appliance information provided. 
+                    Actual electricity consumption may vary based on usage patterns, appliance efficiency, 
+                    and other factors. Please refer to your actual electricity bills for accurate consumption data.
+                </p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-buttons">
+                <a href="/survey" class="btn btn-outline">← New Assessment</a>
+                <a href="/recommendations" class="btn btn-primary">View Recommendations →</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        // Load assessment data if available
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedAssessment = loadFromLocalStorage('current_assessment');
+            if (savedAssessment && savedAssessment.consumption) {
+                displayConsumptionResults(savedAssessment.consumption);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Recommendations - Bright Homes</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="page-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">☀️ Bright Homes</div>
+                <div class="sidebar-subtitle">Energy & Solar Awareness</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="/" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🏠</span>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/survey" class="sidebar-nav-link active">
+                        <span class="sidebar-nav-icon">📋</span>
+                        Energy Assessment
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/solar-estimator" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">☀️</span>
+                        Solar Estimator
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/pm-surya-ghar" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🇮🇳</span>
+                        PM Surya Ghar
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/registration" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📝</span>
+                        Registration Guide
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/history" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📊</span>
+                        History
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/dashboard" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📈</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/about-csp" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">ℹ️</span>
+                        About CSP
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <div>
+                    <h1 class="header-title">Energy Saving Recommendations</h1>
+                    <p class="header-subtitle">Personalized suggestions to reduce your electricity consumption</p>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>ℹ️ Note:</strong> These recommendations are based on general energy-saving practices and your appliance usage. Actual savings may vary.
+            </div>
+
+            <!-- Recommendations Results -->
+            <div id="recommendations-results">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">⚡ Quick Savings</h2>
+                        <p class="card-subtitle">Immediate actions you can take today</p>
+                    </div>
+                    <div class="alert alert-info">
+                        <strong>Switch off appliances when not in use</strong>
+                        <p>Turn off lights, fans, and other appliances when leaving a room.</p>
+                        <small><em>Potential saving: 5-10%</em></small>
+                    </div>
+                    <div class="alert alert-info">
+                        <strong>Avoid standby power</strong>
+                        <p>Unplug devices or use smart power strips to eliminate standby power consumption.</p>
+                        <small><em>Potential saving: 3-5%</em></small>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">🔧 Low-Cost Improvements</h2>
+                        <p class="card-subtitle">Affordable upgrades with good returns</p>
+                    </div>
+                    <div class="alert alert-info">
+                        <strong>Replace with LED bulbs</strong>
+                        <p>Replace incandescent bulbs with LED bulbs which use 75% less energy.</p>
+                        <small><em>Potential saving: 10-15%</em></small>
+                    </div>
+                    <div class="alert alert-info">
+                        <strong>Use natural lighting</strong>
+                        <p>Maximize use of natural daylight during daytime hours.</p>
+                        <small><em>Potential saving: 5-8%</em></small>
+                    </div>
+                    <div class="alert alert-info">
+                        <strong>Optimize refrigerator usage</strong>
+                        <p>Maintain appropriate temperature (3-4°C) and avoid frequent door opening.</p>
+                        <small><em>Potential saving: 5-10%</em></small>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">🏠 Long-Term Improvements</h2>
+                        <p class="card-subtitle">Investments for significant long-term savings</p>
+                    </div>
+                    <div class="alert alert-info">
+                        <strong>Energy-efficient appliances</strong>
+                        <p>Consider upgrading to 5-star rated energy-efficient appliances.</p>
+                        <small><em>Potential saving: 15-30%</em></small>
+                    </div>
+                    <div class="alert alert-info">
+                        <strong>Install rooftop solar</strong>
+                        <p>Consider installing rooftop solar panels to generate clean energy and reduce electricity bills.</p>
+                        <small><em>Potential saving: 40-70%</em></small>
+                    </div>
+                    <div class="alert alert-info">
+                        <strong>Improve home insulation</strong>
+                        <p>Better insulation reduces heating and cooling requirements.</p>
+                        <small><em>Potential saving: 10-20%</em></small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Tips -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">💡 Additional Energy Tips</h2>
+                </div>
+                <ul style="margin-left: 2rem; line-height: 2;">
+                    <li>Use ceiling fans instead of air conditioning when possible</li>
+                    <li>Set air conditioner temperature to 24-26°C for optimal efficiency</li>
+                    <li>Run washing machines and dishwashers with full loads</li>
+                    <li>Use cold water for laundry when suitable</li>
+                    <li>Dry clothes naturally instead of using dryers</li>
+                    <li>Regularly maintain appliances for optimal performance</li>
+                    <li>Use timers for water heaters and geysers</li>
+                    <li>Seal windows and doors to prevent air leaks</li>
+                </ul>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <div class="disclaimer-title">⚠️ Important Note</div>
+                <p>
+                    These recommendations are general guidelines based on energy-saving best practices. 
+                    Potential savings are estimates and actual results may vary based on individual circumstances, 
+                    implementation quality, and usage patterns. 
+                    Consult with energy professionals for personalized advice.
+                </p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-buttons">
+                <a href="/analysis" class="btn btn-outline">← Back to Analysis</a>
+                <a href="/solar-estimator" class="btn btn-primary">Explore Solar →</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

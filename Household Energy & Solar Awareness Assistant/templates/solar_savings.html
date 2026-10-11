@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Savings Dashboard - Bright Homes</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="page-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">☀️ Bright Homes</div>
+                <div class="sidebar-subtitle">Energy & Solar Awareness</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="/" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🏠</span>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/survey" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📋</span>
+                        Energy Assessment
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/solar-estimator" class="sidebar-nav-link active">
+                        <span class="sidebar-nav-icon">☀️</span>
+                        Solar Estimator
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/pm-surya-ghar" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🇮🇳</span>
+                        PM Surya Ghar
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/registration" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📝</span>
+                        Registration Guide
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/history" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📊</span>
+                        History
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/dashboard" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📈</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/about-csp" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">ℹ️</span>
+                        About CSP
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <div>
+                    <h1 class="header-title">Solar Savings Dashboard</h1>
+                    <p class="header-subtitle">Detailed analysis of potential solar benefits</p>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>ℹ️ Note:</strong> Use the Solar Estimator first to calculate your solar potential, then view the detailed savings analysis here.
+            </div>
+
+            <!-- Solar Summary Cards -->
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon">💡</div>
+                    <div class="dashboard-card-value" id="current-annual-cost">₹--</div>
+                    <div class="dashboard-card-label">Current Annual Electricity Cost</div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon">☀️</div>
+                    <div class="dashboard-card-value" id="solar-annual-generation">-- kWh</div>
+                    <div class="dashboard-card-label">Est. Solar Annual Generation</div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon">📉</div>
+                    <div class="dashboard-card-value" id="annual-offset">--%</div>
+                    <div class="dashboard-card-label">Est. Electricity Offset</div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon">💰</div>
+                    <div class="dashboard-card-value" id="annual-savings">₹--</div>
+                    <div class="dashboard-card-label">Est. Annual Savings</div>
+                </div>
+            </div>
+
+            <!-- Financial Analysis -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">💰 Financial Analysis</h2>
+                </div>
+                <div class="table-container">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><strong>Estimated System Cost</strong></td>
+                                <td id="system-cost">₹-- - ₹--</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Estimated Payback Period</strong></td>
+                                <td id="payback-period">-- years</td>
+                            </tr>
+                            <tr>
+                                <td><strong>25-Year Lifetime Generation</strong></td>
+                                <td id="lifetime-generation">-- kWh</td>
+                            </tr>
+                            <tr>
+                                <td><strong>25-Year Lifetime Savings</strong></td>
+                                <td id="lifetime-savings">₹--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Monthly Comparison -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📊 Monthly Comparison</h2>
+                </div>
+                <div id="monthly-chart" class="chart-container">
+                    <p class="text-gray">Complete the solar estimator to see monthly comparison charts.</p>
+                </div>
+            </div>
+
+            <!-- Cumulative Savings -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📈 Cumulative Savings Over Time</h2>
+                </div>
+                <div id="cumulative-chart" class="chart-container">
+                    <p class="text-gray">Complete the solar estimator to see cumulative savings projection.</p>
+                </div>
+            </div>
+
+            <!-- Key Insights -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">🎯 Key Insights</h2>
+                </div>
+                <div id="key-insights">
+                    <div class="alert alert-success">
+                        <strong>Environmental Impact:</strong> Solar energy reduces dependence on fossil fuels and lowers carbon emissions.
+                    </div>
+                    <div class="alert alert-info">
+                        <strong>Energy Independence:</strong> Generate your own electricity and reduce grid dependence.
+                    </div>
+                    <div class="alert alert-warning">
+                        <strong>Long-term Investment:</strong> Solar systems have a lifespan of 25+ years with minimal maintenance.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <div class="disclaimer-title">⚠️ Important Disclaimer</div>
+                <p>
+                    All financial values, savings estimates, generation projections, and payback periods are estimates based on the provided assumptions. 
+                    Actual results may vary significantly based on location, weather patterns, system efficiency, installation quality, 
+                    electricity tariff changes, maintenance, and other factors. 
+                    Please consult with approved solar vendors and your electricity distribution company for accurate assessments before making any investment decisions.
+                </p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-buttons">
+                <a href="/solar-estimator" class="btn btn-outline">← Back to Solar Estimator</a>
+                <a href="/pm-surya-ghar" class="btn btn-primary">Learn About PM Surya Ghar →</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        // Load solar data if available
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedAssessment = loadFromLocalStorage('current_assessment');
+            if (savedAssessment && savedAssessment.solar) {
+                const solar = savedAssessment.solar;
+                const monthlyConsumption = savedAssessment.consumption?.monthly_kwh || 0;
+                const tariff = 6.0; // Default tariff
+                
+                // Update dashboard
+                document.getElementById('current-annual-cost').textContent = formatCurrency(monthlyConsumption * 12 * tariff);
+                document.getElementById('solar-annual-generation').textContent = solar.annual_generation.toFixed(0) + ' kWh';
+                document.getElementById('annual-offset').textContent = solar.offset_percentage.toFixed(1) + '%';
+                document.getElementById('annual-savings').textContent = formatCurrency(solar.annual_savings);
+                document.getElementById('system-cost').textContent = formatCurrency(solar.system_cost_min) + ' - ' + formatCurrency(solar.system_cost_max);
+                document.getElementById('payback-period').textContent = solar.payback_years + ' years';
+                document.getElementById('lifetime-generation').textContent = solar.lifetime_generation.toFixed(0) + ' kWh';
+                document.getElementById('lifetime-savings').textContent = formatCurrency(solar.lifetime_savings);
+                
+                // Create simple charts
+                createMonthlyChart(solar, monthlyConsumption);
+                createCumulativeChart(solar);
+            }
+        });
+
+        function createMonthlyChart(solar, monthlyConsumption) {
+            const container = document.getElementById('monthly-chart');
+            const data = [
+                { label: 'Current Usage', value: monthlyConsumption },
+                { label: 'Solar Generation', value: solar.monthly_generation },
+                { label: 'After Solar', value: Math.max(0, monthlyConsumption - solar.monthly_generation) }
+            ];
+            
+            let html = '<div class="simple-bar-chart">';
+            const maxValue = Math.max(...data.map(d => d.value));
+            
+            data.forEach(item => {
+                const percentage = (item.value / maxValue) * 100;
+                html += `
+                    <div class="bar-item">
+                        <div class="bar-label">${item.label}</div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: ${percentage}%"></div>
+                        </div>
+                        <div class="bar-value">${item.value.toFixed(0)} kWh</div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function createCumulativeChart(solar) {
+            const container = document.getElementById('cumulative-chart');
+            const years = [1, 5, 10, 15, 20, 25];
+            const data = years.map(year => ({
+                label: `Year ${year}`,
+                value: solar.annual_savings * year
+            }));
+            
+            let html = '<div class="simple-bar-chart">';
+            const maxValue = Math.max(...data.map(d => d.value));
+            
+            data.forEach(item => {
+                const percentage = (item.value / maxValue) * 100;
+                html += `
+                    <div class="bar-item">
+                        <div class="bar-label">${item.label}</div>
+                        <div class="bar">
+                            <div class="bar-fill" style="width: ${percentage}%"></div>
+                        </div>
+                        <div class="bar-value">${formatCurrency(item.value)}</div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

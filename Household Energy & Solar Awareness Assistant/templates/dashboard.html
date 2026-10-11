@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Bright Homes</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="page-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">☀️ Bright Homes</div>
+                <div class="sidebar-subtitle">Energy & Solar Awareness</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="/" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🏠</span>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/survey" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📋</span>
+                        Energy Assessment
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/solar-estimator" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">☀️</span>
+                        Solar Estimator
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/pm-surya-ghar" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🇮🇳</span>
+                        PM Surya Ghar
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/registration" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📝</span>
+                        Registration Guide
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/history" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📊</span>
+                        History
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/dashboard" class="sidebar-nav-link active">
+                        <span class="sidebar-nav-icon">📈</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/about-csp" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">ℹ️</span>
+                        About CSP
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <div>
+                    <h1 class="header-title">Dashboard</h1>
+                    <p class="header-subtitle">Overview of energy assessments and solar potential</p>
+                </div>
+                <a href="/survey" class="btn btn-primary">+ New Assessment</a>
+            </div>
+
+            <!-- Dashboard Metrics -->
+            <div id="dashboard-metrics">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">⚡ Quick Actions</h2>
+                </div>
+                <div class="feature-cards">
+                    <a href="/survey" class="feature-card" style="text-decoration: none; display: block;">
+                        <div class="feature-card-icon">📋</div>
+                        <h3 class="feature-card-title">Energy Assessment</h3>
+                        <p class="feature-card-description">Start a new household energy assessment</p>
+                    </a>
+
+                    <a href="/solar-estimator" class="feature-card" style="text-decoration: none; display: block;">
+                        <div class="feature-card-icon">☀️</div>
+                        <h3 class="feature-card-title">Solar Estimator</h3>
+                        <p class="feature-card-description">Calculate solar potential and savings</p>
+                    </a>
+
+                    <a href="/pm-surya-ghar" class="feature-card" style="text-decoration: none; display: block;">
+                        <div class="feature-card-icon">🇮🇳</div>
+                        <h3 class="feature-card-title">PM Surya Ghar</h3>
+                        <p class="feature-card-description">Learn about government solar scheme</p>
+                    </a>
+
+                    <a href="/history" class="feature-card" style="text-decoration: none; display: block;">
+                        <div class="feature-card-icon">📊</div>
+                        <h3 class="feature-card-title">View History</h3>
+                        <p class="feature-card-description">Access previous assessments</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Energy Awareness Progress -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📈 Energy Awareness Progress</h2>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>Assessment Completed</span>
+                        <span id="progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="awareness-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <p class="text-gray">
+                    Complete an energy assessment to track your household's energy awareness journey.
+                </p>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">🕐 Recent Activity</h2>
+                </div>
+                <div id="recent-activity">
+                    <p class="text-gray">No recent activity. Start an assessment to see your activity here.</p>
+                </div>
+            </div>
+
+            <!-- Energy Tips -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">💡 Daily Energy Tip</h2>
+                </div>
+                <div class="alert alert-info">
+                    <strong>Tip of the Day:</strong> Switch off lights and appliances when not in use to save up to 10% on your electricity bill.
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <div class="disclaimer-title">⚠️ Important Note</div>
+                <p>
+                    Dashboard data is based on completed assessments. All values are estimates for educational and awareness purposes. 
+                    Verify with professionals before making decisions based on this information.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+        });
+
+        async function loadDashboardData() {
+            try {
+                const assessments = await apiCall('/api/assessments');
+                
+                if (!assessments || assessments.length === 0) {
+                    displayDashboardDemoData();
+                    return;
+                }
+                
+                // Calculate dashboard metrics
+                const totalHouseholds = assessments.length;
+                const avgMonthlyConsumption = assessments.reduce((sum, a) => 
+                    sum + (a.consumption?.monthly_kwh || 0), 0) / totalHouseholds;
+                const totalSolarCapacity = assessments.reduce((sum, a) => 
+                    sum + (a.solar?.solar_capacity || 0), 0);
+                const totalAnnualSavings = assessments.reduce((sum, a) => 
+                    sum + (a.solar?.annual_savings || 0), 0);
+                
+                displayDashboardMetrics({
+                    totalHouseholds,
+                    avgMonthlyConsumption,
+                    totalSolarCapacity,
+                    totalAnnualSavings
+                });
+                
+                updateProgress(assessments.length);
+                displayRecentActivity(assessments);
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                displayDashboardDemoData();
+            }
+        }
+
+        function displayDashboardMetrics(metrics) {
+            const container = document.getElementById('dashboard-metrics');
+            container.innerHTML = `
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">🏠</div>
+                        <div class="dashboard-card-value">${metrics.totalHouseholds}</div>
+                        <div class="dashboard-card-label">Households Assessed</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">⚡</div>
+                        <div class="dashboard-card-value">${metrics.avgMonthlyConsumption.toFixed(0)}</div>
+                        <div class="dashboard-card-label">Avg Monthly kWh</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">☀️</div>
+                        <div class="dashboard-card-value">${metrics.totalSolarCapacity.toFixed(1)}</div>
+                        <div class="dashboard-card-label">Total Solar Capacity (kW)</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">💰</div>
+                        <div class="dashboard-card-value">${formatCurrency(metrics.totalAnnualSavings)}</div>
+                        <div class="dashboard-card-label">Est. Annual Savings</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayDashboardDemoData() {
+            const container = document.getElementById('dashboard-metrics');
+            container.innerHTML = `
+                <div class="alert alert-info">
+                    <strong>Demo Data</strong> - No actual assessments yet. Complete your first assessment to see real data.
+                </div>
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">🏠</div>
+                        <div class="dashboard-card-value">0</div>
+                        <div class="dashboard-card-label">Households Assessed</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">⚡</div>
+                        <div class="dashboard-card-value">--</div>
+                        <div class="dashboard-card-label">Avg Monthly kWh</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">☀️</div>
+                        <div class="dashboard-card-value">0</div>
+                        <div class="dashboard-card-label">Total Solar Capacity (kW)</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">💰</div>
+                        <div class="dashboard-card-value">₹0</div>
+                        <div class="dashboard-card-label">Est. Annual Savings</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('awareness-progress').style.width = '0%';
+            document.getElementById('progress-percentage').textContent = '0%';
+        }
+
+        function updateProgress(assessmentCount) {
+            const progress = Math.min(assessmentCount * 20, 100); // 5 assessments = 100%
+            document.getElementById('awareness-progress').style.width = progress + '%';
+            document.getElementById('progress-percentage').textContent = progress + '%';
+        }
+
+        function displayRecentActivity(assessments) {
+            const container = document.getElementById('recent-activity');
+            const recentAssessments = assessments.slice(-3).reverse();
+            
+            if (recentAssessments.length === 0) {
+                container.innerHTML = '<p class="text-gray">No recent activity.</p>';
+                return;
+            }
+            
+            let html = '<ul style="margin-left: 2rem; line-height: 2;">';
+            recentAssessments.forEach(assessment => {
+                const date = new Date(assessment.created_at).toLocaleDateString();
+                html += `
+                    <li>
+                        <strong>${assessment.household?.name || 'Unknown'}</strong> - 
+                        ${date} - 
+                        ${assessment.consumption?.monthly_kwh?.toFixed(0) || 0} kWh monthly
+                    </li>
+                `;
+            });
+            html += '</ul>';
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

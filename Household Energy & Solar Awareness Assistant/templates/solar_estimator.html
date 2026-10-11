@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Estimator - Bright Homes</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="page-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">☀️ Bright Homes</div>
+                <div class="sidebar-subtitle">Energy & Solar Awareness</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="/" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🏠</span>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/survey" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📋</span>
+                        Energy Assessment
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/solar-estimator" class="sidebar-nav-link active">
+                        <span class="sidebar-nav-icon">☀️</span>
+                        Solar Estimator
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/pm-surya-ghar" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🇮🇳</span>
+                        PM Surya Ghar
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/registration" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📝</span>
+                        Registration Guide
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/history" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📊</span>
+                        History
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/dashboard" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📈</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/about-csp" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">ℹ️</span>
+                        About CSP
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <div>
+                    <h1 class="header-title">Rooftop Solar Estimator</h1>
+                    <p class="header-subtitle">Estimate solar capacity and potential savings for your household</p>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <!-- Solar Calculator Form -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">☀️ Solar Calculator</h2>
+                        <p class="card-subtitle">Enter your details to estimate solar potential</p>
+                    </div>
+
+                    <form id="solar-form">
+                        <div class="form-group">
+                            <label class="form-label" for="monthly-consumption">Average Monthly Electricity Consumption (kWh) *</label>
+                            <input type="number" id="monthly-consumption" class="form-input" placeholder="e.g., 300" min="0" required>
+                            <small class="form-hint">Check your electricity bill for monthly consumption</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="rooftop-area">Available Rooftop Area (sq.ft) *</label>
+                            <input type="number" id="rooftop-area" class="form-input" placeholder="e.g., 500" min="0" required>
+                            <small class="form-hint">Approximately 100 sq.ft required per kW of solar capacity</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="tariff">Average Electricity Tariff (₹/kWh) *</label>
+                            <input type="number" id="tariff" class="form-input" placeholder="e.g., 6.0" min="0" step="0.1" value="6.0" required>
+                            <small class="form-hint">Check your electricity bill for per-unit rate</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="peak-sun-hours">Average Peak Sun Hours</label>
+                            <input type="number" id="peak-sun-hours" class="form-input" placeholder="e.g., 5.0" min="0" max="12" step="0.1" value="5.0">
+                            <small class="form-hint">India average: 4-6 hours. Higher in western regions.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="performance-factor">System Performance Factor</label>
+                            <input type="number" id="performance-factor" class="form-input" placeholder="e.g., 0.75" min="0" max="1" step="0.05" value="0.75">
+                            <small class="form-hint">Accounts for losses, typically 0.70-0.80</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="preferred-capacity">Preferred Solar System Size</label>
+                            <select id="preferred-capacity" class="form-select" onchange="toggleCustomCapacity()">
+                                <option value="">Auto-recommend based on consumption</option>
+                                <option value="1">1 kW</option>
+                                <option value="2">2 kW</option>
+                                <option value="3">3 kW</option>
+                                <option value="5">5 kW</option>
+                                <option value="10">10 kW</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="custom-capacity-group" style="display: none;">
+                            <label class="form-label" for="custom-capacity">Custom Capacity (kW)</label>
+                            <input type="number" id="custom-capacity" class="form-input" placeholder="Enter custom capacity" min="0" step="0.5">
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" onclick="calculateSolar()">
+                            Calculate Solar Potential
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Rooftop Visualization -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">🏠 Rooftop Area Analysis</h2>
+                        <p class="card-subtitle">Visual representation of your rooftop</p>
+                    </div>
+
+                    <div class="solar-visualization">
+                        <div class="solar-house">
+                            <div class="solar-roof"></div>
+                        </div>
+                        <div style="text-align: center; margin-top: 2rem; color: var(--navy-primary);">
+                            <p><strong>Available Area:</strong> <span id="viz-area">--</span> sq.ft</p>
+                            <p><strong>Required Area:</strong> <span id="viz-required">--</span> sq.ft</p>
+                            <p><strong>Status:</strong> <span id="viz-status">--</span></p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <strong>Note:</strong> This is a simplified visualization. Actual solar installation requires professional site assessment considering shading, roof orientation, structural capacity, and local regulations.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solar Results -->
+            <div id="solar-results" class="card" style="display: none;">
+                <div class="card-header">
+                    <h2 class="card-title">📊 Solar Estimation Results</h2>
+                    <p class="card-subtitle">Estimated solar capacity and financial benefits</p>
+                </div>
+                <div id="solar-results-content"></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="nav-buttons">
+                <a href="/survey" class="btn btn-outline">← Back to Assessment</a>
+                <a href="/solar-savings" class="btn btn-success">View Detailed Savings →</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        function toggleCustomCapacity() {
+            const select = document.getElementById('preferred-capacity');
+            const customGroup = document.getElementById('custom-capacity-group');
+            
+            if (select.value === 'custom') {
+                customGroup.style.display = 'block';
+            } else {
+                customGroup.style.display = 'none';
+            }
+        }
+
+        function displaySolarResults(data) {
+            const container = document.getElementById('solar-results');
+            const content = document.getElementById('solar-results-content');
+            
+            container.style.display = 'block';
+            
+            // Update visualization
+            document.getElementById('viz-area').textContent = document.getElementById('rooftop-area').value;
+            document.getElementById('viz-required').textContent = data.area_required;
+            document.getElementById('viz-status').textContent = data.area_sufficient ? '✅ Sufficient' : '⚠️ Insufficient';
+            
+            content.innerHTML = `
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">☀️</div>
+                        <div class="dashboard-card-value">${data.solar_capacity} kW</div>
+                        <div class="dashboard-card-label">Solar Capacity</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">🔋</div>
+                        <div class="dashboard-card-value">${data.annual_generation.toFixed(0)}</div>
+                        <div class="dashboard-card-label">Annual Generation (kWh)</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">💰</div>
+                        <div class="dashboard-card-value">${formatCurrency(data.annual_savings)}</div>
+                        <div class="dashboard-card-label">Est. Annual Savings</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-icon">⏱️</div>
+                        <div class="dashboard-card-value">${data.payback_years} yrs</div>
+                        <div class="dashboard-card-label">Est. Payback Period</div>
+                    </div>
+                </div>
+                
+                <div class="card" style="margin-top: 2rem;">
+                    <h3 class="font-bold text-navy mb-2">Detailed Breakdown</h3>
+                    <div class="table-container">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Recommended Capacity</strong></td>
+                                    <td>${data.recommended_capacity} kW</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Daily Generation</strong></td>
+                                    <td>${data.daily_generation.toFixed(2)} kWh</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Monthly Generation</strong></td>
+                                    <td>${data.monthly_generation.toFixed(2)} kWh</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Annual Generation</strong></td>
+                                    <td>${data.annual_generation.toFixed(2)} kWh</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Electricity Offset</strong></td>
+                                    <td>${data.offset_percentage.toFixed(1)}%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>System Cost Range</strong></td>
+                                    <td>${formatCurrency(data.system_cost_min)} - ${formatCurrency(data.system_cost_max)}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Payback Period</strong></td>
+                                    <td>${data.payback_years} years</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Lifetime Generation (25 yrs)</strong></td>
+                                    <td>${data.lifetime_generation.toFixed(0)} kWh</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Lifetime Savings (25 yrs)</strong></td>
+                                    <td>${formatCurrency(data.lifetime_savings)}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="disclaimer">
+                    <div class="disclaimer-title">⚠️ Important Note</div>
+                    <p>All solar capacity, generation, savings, and financial values are estimates based on the provided assumptions. Actual values may vary based on location, weather patterns, system efficiency, installation quality, and other factors. Please consult with approved solar vendors and your electricity distribution company for accurate assessments.</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

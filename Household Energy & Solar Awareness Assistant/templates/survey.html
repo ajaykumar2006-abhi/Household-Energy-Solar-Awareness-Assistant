@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Assessment - Bright Homes</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="page-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">☀️ Bright Homes</div>
+                <div class="sidebar-subtitle">Energy & Solar Awareness</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="/" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🏠</span>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/survey" class="sidebar-nav-link active">
+                        <span class="sidebar-nav-icon">📋</span>
+                        Energy Assessment
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/solar-estimator" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">☀️</span>
+                        Solar Estimator
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/pm-surya-ghar" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🇮🇳</span>
+                        PM Surya Ghar
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/registration" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📝</span>
+                        Registration Guide
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/history" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📊</span>
+                        History
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/dashboard" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📈</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/about-csp" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">ℹ️</span>
+                        About CSP
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <div>
+                    <h1 class="header-title">Household Energy Assessment</h1>
+                    <p class="header-subtitle">Complete the survey to analyze your electricity consumption</p>
+                </div>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-bar" style="width: 25%"></div>
+                </div>
+                <div class="progress-steps">
+                    <span class="progress-step active">Step 1: Household Details</span>
+                    <span class="progress-step">Step 2: Appliances</span>
+                    <span class="progress-step">Step 3: Analysis</span>
+                    <span class="progress-step">Step 4: Complete</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Household Details -->
+            <div id="step-1" class="step-content card fade-in">
+                <div class="card-header">
+                    <h2 class="card-title">📋 Household Details</h2>
+                    <p class="card-subtitle">Provide basic information about your household</p>
+                </div>
+
+                <form id="household-form">
+                    <div class="form-group">
+                        <label class="form-label" for="household-name">Household Name *</label>
+                        <input type="text" id="household-name" class="form-input" placeholder="Enter household name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="family-size">Number of Family Members *</label>
+                        <input type="number" id="family-size" class="form-input" placeholder="Enter number of family members" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="location">Location *</label>
+                        <input type="text" id="location" class="form-input" placeholder="Enter your city/location" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="connection-type">Electricity Connection Type *</label>
+                        <select id="connection-type" class="form-select" required>
+                            <option value="">Select connection type</option>
+                            <option value="residential">Residential</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="industrial">Industrial</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="monthly-bill">Monthly Electricity Bill (₹) *</label>
+                        <input type="number" id="monthly-bill" class="form-input" placeholder="Enter monthly bill amount" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="monthly-consumption">Average Monthly Consumption (kWh) if known</label>
+                        <input type="number" id="monthly-consumption" class="form-input" placeholder="Enter monthly consumption in kWh" min="0">
+                        <small class="form-hint">Optional - We'll calculate this from your appliances</small>
+                    </div>
+                </form>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="window.location.href='/'">Cancel</button>
+                    <button class="btn btn-primary" onclick="goToStep(2)">Next: Add Appliances →</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Appliance Information -->
+            <div id="step-2" class="step-content card" style="display: none;">
+                <div class="card-header">
+                    <h2 class="card-title">🔌 Appliance Information</h2>
+                    <p class="card-subtitle">Add appliances to calculate energy consumption</p>
+                </div>
+
+                <div class="card" style="background: var(--off-white); border: 2px dashed var(--light-gray);">
+                    <h3 style="margin-bottom: 1rem; color: var(--navy-primary);">Add New Appliance</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="appliance-name">Appliance Name *</label>
+                        <select id="appliance-name" class="form-select">
+                            <option value="">Select or enter custom appliance</option>
+                            <option value="Fan">Fan</option>
+                            <option value="LED Bulb">LED Bulb</option>
+                            <option value="Refrigerator">Refrigerator</option>
+                            <option value="Television">Television</option>
+                            <option value="Air Conditioner">Air Conditioner</option>
+                            <option value="Washing Machine">Washing Machine</option>
+                            <option value="Water Pump">Water Pump</option>
+                            <option value="Computer/Laptop">Computer/Laptop</option>
+                            <option value="Geyser">Geyser</option>
+                            <option value="Microwave">Microwave</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="appliance-quantity">Quantity *</label>
+                        <input type="number" id="appliance-quantity" class="form-input" value="1" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="appliance-wattage">Wattage (W) *</label>
+                        <input type="number" id="appliance-wattage" class="form-input" placeholder="e.g., 60 for a 60W bulb" min="1" required>
+                        <small class="form-hint">Check your appliance label for wattage</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="appliance-hours">Average Hours Used Per Day *</label>
+                        <input type="number" id="appliance-hours" class="form-input" placeholder="e.g., 8 for 8 hours per day" min="0" max="24" step="0.5" required>
+                    </div>
+
+                    <button class="btn btn-success" onclick="addAppliance()">+ Add Appliance</button>
+                </div>
+
+                <div id="appliance-list" style="margin-top: 2rem;">
+                    <p class="text-gray">No appliances added yet. Add appliances above to calculate consumption.</p>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="prevStep()">← Previous</button>
+                    <button class="btn btn-primary" onclick="calculateAndProceed()">Calculate & Next →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Consumption Analysis -->
+            <div id="step-3" class="step-content card" style="display: none;">
+                <div class="card-header">
+                    <h2 class="card-title">⚡ Electricity Consumption Analysis</h2>
+                    <p class="card-subtitle">Your household energy consumption breakdown</p>
+                </div>
+
+                <div id="consumption-results">
+                    <div class="spinner"></div>
+                </div>
+
+                <div id="energy-category"></div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="prevStep()">← Previous</button>
+                    <button class="btn btn-primary" onclick="goToStep(4)">View Recommendations →</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Recommendations -->
+            <div id="step-4" class="step-content card" style="display: none;">
+                <div class="card-header">
+                    <h2 class="card-title">💡 Energy Saving Recommendations</h2>
+                    <p class="card-subtitle">Personalized suggestions based on your usage</p>
+                </div>
+
+                <div id="recommendations-results">
+                    <div class="spinner"></div>
+                </div>
+
+                <div class="disclaimer">
+                    <div class="disclaimer-title">⚠️ Note</div>
+                    <p>These recommendations are general suggestions. Potential savings are estimates and actual results may vary based on individual circumstances and implementation.</p>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="prevStep()">← Previous</button>
+                    <button class="btn btn-success" onclick="completeAssessment()">Complete Assessment</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        async function calculateAndProceed() {
+            if (AppState.applianceData.length === 0) {
+                showError('Please add at least one appliance');
+                return;
+            }
+            
+            await calculateConsumption();
+            goToStep(3);
+        }
+    </script>
+</body>
+</html>

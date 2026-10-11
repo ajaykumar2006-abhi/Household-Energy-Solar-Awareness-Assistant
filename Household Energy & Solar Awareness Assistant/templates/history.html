@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment History - Bright Homes</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="page-layout">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">☀️ Bright Homes</div>
+                <div class="sidebar-subtitle">Energy & Solar Awareness</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="/" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🏠</span>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/survey" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📋</span>
+                        Energy Assessment
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/solar-estimator" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">☀️</span>
+                        Solar Estimator
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/pm-surya-ghar" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">🇮🇳</span>
+                        PM Surya Ghar
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/registration" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📝</span>
+                        Registration Guide
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/history" class="sidebar-nav-link active">
+                        <span class="sidebar-nav-icon">📊</span>
+                        History
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/dashboard" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">📈</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="/about-csp" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon">ℹ️</span>
+                        About CSP
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <div>
+                    <h1 class="header-title">Assessment History</h1>
+                    <p class="header-subtitle">View and manage your previous energy assessments</p>
+                </div>
+                <a href="/survey" class="btn btn-primary">+ New Assessment</a>
+            </div>
+
+            <!-- Assessment History -->
+            <div id="assessment-history" class="card">
+                <div class="card-header">
+                    <h2 class="card-title">📊 Previous Assessments</h2>
+                </div>
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon">📋</div>
+                    <div class="dashboard-card-value" id="total-assessments">--</div>
+                    <div class="dashboard-card-label">Total Assessments</div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon">⚡</div>
+                    <div class="dashboard-card-value" id="avg-consumption">--</div>
+                    <div class="dashboard-card-label">Avg Monthly kWh</div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon">☀️</div>
+                    <div class="dashboard-card-value" id="total-solar">--</div>
+                    <div class="dashboard-card-label">Total Solar Capacity</div>
+                </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-icon">💰</div>
+                    <div class="dashboard-card-value" id="total-savings">--</div>
+                    <div class="dashboard-card-label">Est. Annual Savings</div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-buttons">
+                <a href="/dashboard" class="btn btn-outline">← View Dashboard</a>
+                <a href="/survey" class="btn btn-primary">Start New Assessment →</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAssessmentHistory();
+        });
+
+        async function loadAssessmentHistory() {
+            try {
+                const assessments = await apiCall('/api/assessments');
+                displayAssessmentHistory(assessments);
+                updateStatistics(assessments);
+            } catch (error) {
+                document.getElementById('assessment-history').innerHTML = `
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong> Failed to load assessment history. ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        function updateStatistics(assessments) {
+            if (!assessments || assessments.length === 0) {
+                document.getElementById('total-assessments').textContent = '0';
+                document.getElementById('avg-consumption').textContent = '--';
+                document.getElementById('total-solar').textContent = '0 kW';
+                document.getElementById('total-savings').textContent = '₹0';
+                return;
+            }
+
+            const totalAssessments = assessments.length;
+            const totalConsumption = assessments.reduce((sum, a) => sum + (a.consumption?.monthly_kwh || 0), 0);
+            const avgConsumption = totalConsumption / totalAssessments;
+            const totalSolar = assessments.reduce((sum, a) => sum + (a.solar?.solar_capacity || 0), 0);
+            const totalSavings = assessments.reduce((sum, a) => sum + (a.solar?.annual_savings || 0), 0);
+
+            document.getElementById('total-assessments').textContent = totalAssessments;
+            document.getElementById('avg-consumption').textContent = avgConsumption.toFixed(0);
+            document.getElementById('total-solar').textContent = totalSolar.toFixed(1) + ' kW';
+            document.getElementById('total-savings').textContent = formatCurrency(totalSavings);
+        }
+    </script>
+</body>
+</html>
